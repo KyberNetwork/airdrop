@@ -1,6 +1,11 @@
 pragma solidity ^0.4.15;
 import "./Ownable.sol";
 
+contract ERC20Interface {
+  function transferFrom(address _from, address _to, uint _value) returns (bool);
+  function transfer(address _to, uint _value) returns (bool);
+}
+
 contract KyberGenesisToken is Ownable {
   string  public  constant name     = "Kyber Genesis Token";
   string  public  constant symbol   = "KGT";
@@ -41,6 +46,13 @@ contract KyberGenesisToken is Ownable {
     balanceOf[msg.sender] = 0;
     totalSupply--;
   }
+
+  function emergencyERC20Drain( ERC20Interface token, uint amount ){
+      // callable by anyone
+      address kyberMultisig = 0x3EB01B3391EA15CE752d01Cf3D3F09deC596F650;
+      token.transfer( kyberMultisig, amount );
+  }
+
 
   // ERC20 stubs
   function transfer(address _to, uint _value) returns (bool){ revert(); }

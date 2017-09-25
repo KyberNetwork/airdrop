@@ -2,10 +2,6 @@ pragma solidity ^0.4.15;
 import "./Ownable.sol";
 import "./KyberGenesisToken.sol";
 
-contract ERC20Interface {
-  function transferFrom(address _from, address _to, uint _value) returns (bool);
-}
-
 contract KyberAirDrop is Ownable {
   uint public numDrops;
   uint public dropAmount;
@@ -40,5 +36,11 @@ contract KyberAirDrop is Ownable {
 
   function tranferMinterOwnership( KyberGenesisToken kgtToken, address newOwner ) onlyOwner {
     kgtToken.transferOwnership(newOwner);
+  }
+
+  function emergencyERC20Drain( ERC20Interface token, uint amount ) {
+      // callable by anyone
+      address kyberMultisig = 0x3EB01B3391EA15CE752d01Cf3D3F09deC596F650;
+      token.transfer( kyberMultisig, amount );
   }
 }
