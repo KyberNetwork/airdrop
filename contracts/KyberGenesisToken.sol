@@ -2,8 +2,9 @@ pragma solidity ^0.4.15;
 import "./Ownable.sol";
 
 contract ERC20Interface {
-  function transferFrom(address _from, address _to, uint _value) returns (bool);
-  function transfer(address _to, uint _value) returns (bool);
+  function transferFrom(address _from, address _to, uint _value) returns (bool){}
+  function transfer(address _to, uint _value) returns (bool){}
+  function ERC20Interface(){}
 }
 
 contract KyberGenesisToken is Ownable {
