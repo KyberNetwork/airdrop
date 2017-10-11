@@ -19,3 +19,4 @@ When used for future airdrop one should:
 1. Code valid private key string in `upload.js`.
 2. Change `emergencyERC20Drain` to send stuck tokens to a predefined address. Currently it sends it to kyber wallet.
 3. Set desiriable gas fees.
+4. Change hardcoded addresses to match actual token address and source wallet.
